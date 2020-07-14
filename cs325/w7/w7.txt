@@ -1,0 +1,316 @@
+1. (Lindo)
+  a)
+    INPUT:
+      max dc
+      ST
+       dg = 0
+       df - da <= 10
+       df - dd <=18
+       dc - df <=3
+       dc - db <=4
+       dd - dc <=3
+       dd - dg <=2
+       dd - de<= 9
+       de - db <= 10
+       de - dd <= 25
+       df - de <= 2
+       dg - de<= 7
+       dh - dg <= 3
+       da - dh <= 4
+       da - df <= 5
+       db - da <= 8
+       db - dh <= 9
+       db - df <= 7
+      END
+    OUTPUT:
+      Global optimal solution found.
+      Objective value:                              16.00000
+      Infeasibilities:                              0.000000
+      Total solver iterations:                             4
+      Elapsed runtime seconds:                          0.10
+
+      Model Class:                                        LP
+
+      Total variables:                      7
+      Nonlinear variables:                  0
+      Integer variables:                    0
+
+      Total constraints:                   18
+      Nonlinear constraints:                0
+
+      Total nonzeros:                      32
+      Nonlinear nonzeros:                   0
+
+
+
+                                    Variable           Value        Reduced Cost
+                                          DC        16.00000            0.000000
+                                          DG        0.000000            0.000000
+                                          DF        13.00000            0.000000
+                                          DA        4.000000            0.000000
+                                          DD        2.000000            0.000000
+                                          DB        12.00000            0.000000
+                                          DE        11.00000            0.000000
+                                          DH        3.000000            0.000000
+
+                                         Row    Slack or Surplus      Dual Price
+                                           1        16.00000            1.000000
+                                           2        0.000000            1.000000
+                                           3        1.000000            0.000000
+                                           4        7.000000            0.000000
+                                           5        0.000000            0.000000
+                                           6        0.000000            1.000000
+                                           7        17.00000            0.000000
+                                           8        0.000000            0.000000
+                                           9        18.00000            0.000000
+                                          10        11.00000            0.000000
+                                          11        16.00000            0.000000
+                                          12        0.000000            0.000000
+                                          13        18.00000            0.000000
+                                          14        0.000000            1.000000
+                                          15        3.000000            0.000000
+                                          16        14.00000            0.000000
+                                          17        0.000000            0.000000
+                                          18        0.000000            1.000000
+                                          19        8.000000            0.000000
+  b)
+    INPUT:
+      max da + db + dc + dd + de + df + dh
+      ST
+       dg = 0
+       df - da <= 10
+       df - dd <=18
+       dc - df <=3
+       dc - db <=4
+       dd - dc <=3
+       dd - dg <=2
+       dd - de<= 9
+       de - db <= 10
+       de - dd <= 25
+       df - de <= 2
+       dg - de<= 7
+       dh - dg <= 3
+       da - dh <= 4
+       da - df <= 5
+       db - da <= 8
+       db - dh <= 9
+       db - df <= 7
+      END
+    OUTPUT:
+      Global optimal solution found.
+      Objective value:                              79.00000
+      Infeasibilities:                              0.000000
+      Total solver iterations:                             3
+      Elapsed runtime seconds:                          0.09
+
+      Model Class:                                        LP
+
+      Total variables:                      7
+      Nonlinear variables:                  0
+      Integer variables:                    0
+
+      Total constraints:                   18
+      Nonlinear constraints:                0
+
+      Total nonzeros:                      38
+      Nonlinear nonzeros:                   0
+
+
+
+                                    Variable           Value        Reduced Cost
+                                          DA        7.000000            0.000000
+                                          DB        12.00000            0.000000
+                                          DC        16.00000            0.000000
+                                          DD        2.000000            0.000000
+                                          DE        22.00000            0.000000
+                                          DF        17.00000            0.000000
+                                          DH        3.000000            0.000000
+                                          DG        0.000000            0.000000
+
+                                         Row    Slack or Surplus      Dual Price
+                                           1        79.00000            1.000000
+                                           2        0.000000            7.000000
+                                           3        0.000000            1.000000
+                                           4        3.000000            0.000000
+                                           5        4.000000            0.000000
+                                           6        0.000000            1.000000
+                                           7        17.00000            0.000000
+                                           8        0.000000            1.000000
+                                           9        29.00000            0.000000
+                                          10        0.000000            1.000000
+                                          11        5.000000            0.000000
+                                          12        7.000000            0.000000
+                                          13        29.00000            0.000000
+                                          14        0.000000            6.000000
+                                          15        0.000000            2.000000
+                                          16        15.00000            0.000000
+                                          17        3.000000            0.000000
+                                          18        0.000000            3.000000
+                                          19        12.00000            0.000000
+
+2. (MATLAB)
+  INPUT:
+    l =.75;
+    s = 20;
+    p = 6;
+    c = 9;
+    sp = 6.7;
+    pp = 3.55;
+    bp = 4.31;
+    cp = 4.81;
+
+    pps = sp - .125*s - l;
+    ppp = pp - .08*p - l;
+    ppb = bp - (.05*p + .05*c) -l;
+    ppc = cp - (.03*p + .07*c) -l;
+
+    f= [-pps; -ppp; -ppb; -ppc];
+    A= [.125, 0, 0, 0;
+      0, .08, .05, .03;
+      0, 0, .05, .07;
+      1, 0, 0, 0;
+      0, 1, 0, 0;
+      0, 0, 1, 0;
+      0, 0, 0, 1;
+      -1, 0, 0, 0;
+      0, -1, 0, 0;
+      0, 0, -1, 0;
+      0, 0, 0, -1;];
+
+    b= [1000; 2000; 1250; 7000; 14000; 16000; 8500; 6000; 10000; 13000; 6000];
+
+    x = linprog(f, A, b);
+    y = sum(conj(x) .* (-1*(f)) );
+
+    disp("Optimal number for each tie:");
+    disp(x);
+    disp("Optimal profit:");
+    disp(y);
+
+  OUTPUT:
+    Optimal solution found.
+
+    Optimal number for each tie:
+            7000
+           13625
+           13100
+            8500
+
+    Optimal profit:
+          120196
+
+3. (Lindo)
+  a)
+    INPUT:
+    min a + b + c + d
+      ST
+        1a+5b+10c+25d = 202
+        A>= 0
+        B>= 0
+        C>= 0
+        D>= 0
+      END
+    GIN 4
+
+    OUTPUT:
+    Global optimal solution found.
+      Objective value:                              10.00000
+      Objective bound:                              10.00000
+      Infeasibilities:                              0.000000
+      Extended solver steps:                               0
+      Total solver iterations:                             1
+      Elapsed runtime seconds:                          0.10
+
+      Model Class:                                      PILP
+
+      Total variables:                      4
+      Nonlinear variables:                  0
+      Integer variables:                    4
+
+      Total constraints:                    6
+      Nonlinear constraints:                0
+
+      Total nonzeros:                      12
+      Nonlinear nonzeros:                   0
+
+
+
+                                    Variable           Value        Reduced Cost
+                                           A        2.000000            1.000000
+                                           B        0.000000            1.000000
+                                           C        0.000000            1.000000
+                                           D        8.000000            1.000000
+
+                                         Row    Slack or Surplus      Dual Price
+                                           1        10.00000           -1.000000
+                                           2        0.000000            0.000000
+                                           3        2.000000            0.000000
+                                           4        0.000000            0.000000
+                                           5        0.000000            0.000000
+                                           6        8.000000            0.000000
+
+    b)
+      INPUT:
+        min a + b + c + d + e
+          ST
+            1a+3b+7c+12d+27e = 293
+            A>= 0
+            B>= 0
+            C>= 0
+            D>= 0
+            E>=0
+          END
+        GIN 5
+
+      OUTPUT:
+        Global optimal solution found.
+          Objective value:                              14.00000
+          Objective bound:                              14.00000
+          Infeasibilities:                              0.000000
+          Extended solver steps:                               0
+          Total solver iterations:                             3
+          Elapsed runtime seconds:                          0.08
+
+          Model Class:                                      PILP
+
+          Total variables:                      5
+          Nonlinear variables:                  0
+          Integer variables:                    5
+
+          Total constraints:                    7
+          Nonlinear constraints:                0
+
+          Total nonzeros:                      15
+          Nonlinear nonzeros:                   0
+
+
+
+                                        Variable           Value        Reduced Cost
+                                               A        1.000000            1.000000
+                                               B        1.000000            1.000000
+                                               C        1.000000            1.000000
+                                               D        1.000000            1.000000
+                                               E        10.00000            1.000000
+
+                                             Row    Slack or Surplus      Dual Price
+                                               1        14.00000           -1.000000
+                                               2        0.000000            0.000000
+                                               3        1.000000            0.000000
+                                               4        1.000000            0.000000
+                                               5        1.000000            0.000000
+                                               6        1.000000            0.000000
+                                               7        10.00000            0.000000
+
+4)
+    a)
+      Maximize:
+        2x - 6z
+      Subject to:
+        a = 7 - x - y + z
+        b = -8 + 3x - y
+        c = -x + 2y + 2z
+        x, y, z, a, b, c >= 0
+
+    b)
+      Basic variables: a, b, c
+      Non - basic variables: x, y, z
